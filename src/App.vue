@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <top/>
-    <index/>
+    <top />
+    <index />
   </div>
 </template>
 
@@ -13,9 +13,9 @@ export default {
   name: 'App',
   components: {
     top,
-    index
+    index,
   },
-  created: function() {
+  created: function () {
   }
 }
 </script>

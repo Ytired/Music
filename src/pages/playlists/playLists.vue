@@ -35,6 +35,7 @@
       <div class="tab-content">
         <div class="items">
           <div class="item"
+               @click="toPlaylist(item.id)"
                v-for="(item, index) in songList"
                :key="index">
             <div class="img-wrap">
@@ -184,7 +185,11 @@ export default {
       this.page = val
       // 重新请求数据
       this.listData()
+      console.log(this.listData());
       console.log(`当前页: ${val}`)
+    },
+    toPlaylist(id) {
+      this.$router.push(`/playlist?id=${id}`)
     },
   },
 }

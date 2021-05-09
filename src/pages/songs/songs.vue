@@ -37,7 +37,9 @@
             <div class="song-wrap">
               <div class="name-wrap">
                 <span>{{ item.name }}</span>
-                <span class="iconfont icon-mv"></span>
+                <span class="iconfont icon-mv"
+                      @click="toMv(item.mv)"
+                      v-if="item.mvid!=0"></span>
               </div>
               <span>{{ item.album.company }}</span>
             </div>
@@ -67,7 +69,7 @@
 
 <script>
 import moment from 'moment'
-import {getBanner} from 'service/request.js'
+// import { getBanner } from 'service/request.js'
 export default {
   name: 'songs',
   data() {
@@ -87,7 +89,6 @@ export default {
   created() {
     //调用最新音乐
     this.newMusic()
-    this.getBanner()
   },
   methods: {
     //创建最新音乐网络请求
@@ -102,9 +103,9 @@ export default {
       }).then((res) => {
         // console.log(res)
         this.songLists = res.data.data.slice(0, 50)
+
         if (res.data.code == 200) {
           this.list = [...res.data.data]
-          // console.log(this.list)
           this.songLists = this.list.slice(0, this.queryInfo.limit)
         }
       })
@@ -114,10 +115,11 @@ export default {
       console.log(newSize);
 
       this.queryInfo.limit = newSize
-      console.log(`我是limit数据${this.queryInfo.limit}`);
-
+      // console.log(`我是limit数据${this.queryInfo.limit}`);
       let start = (this.queryInfo.offset - 1) * this.queryInfo.limit
+
       let end = (this.queryInfo.offset - 1) * this.queryInfo.limit + this.queryInfo.limit
+
       this.songLists = this.list.slice(start, end)
     },
     // 页码发生变化
@@ -131,8 +133,6 @@ export default {
     },
     //toggle点击事件
     toggle(item, index) {
-      // console.log(item)
-      // console.log(index);
       this.checkIndex = index
       this.queryInfo.offset = 1
       // 点到谁谁就传入对应的值
@@ -167,15 +167,13 @@ export default {
           //成功
           type: 'success',
           //不自动关闭
-          duration: 0
+          duration: 4000
         })
       })
     },
-    getBanner(){
-      getBanner().then(res => {
-        console.log(res);
-    })
-  }
+    toMv(id) {
+      this.$router.push(`/mv?id=${id}`)
+    }
   },
   filters: {
     dateFMT(str) {

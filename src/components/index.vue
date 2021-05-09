@@ -1,6 +1,6 @@
 <template>
   <div class="index-container">
-    <div class="nav" >
+    <div class="nav">
       <ul>
         <li>
           <router-link to="/discovery">
@@ -32,43 +32,42 @@
       <router-view></router-view>
     </div>
     <div class="player">
-      <audio :src='musicUrl' autoplay controls></audio>
+      <audio :src='musicUrl'
+             autoplay
+             controls></audio>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: "index",
-    components: {
+export default {
+  name: "index",
+  components: {
 
-    },
-    mixins: [],
-    props: {
+  },
+  mixins: [],
+  props: {
 
-    },
-    data: function() {
-      return {
-        musicUrl: ''
-      }
-    },
-    created: function() {
-
-    },
-    mounted: function() {
-
-    },
-    computed: {
-
-    },
-    methods: {
-
+  },
+  data: function () {
+    return {
+      musicUrl: ''
     }
+  },
+  created: function () {
+
+  },
+  mounted: function () {
+
+  },
+  computed: {
+
+  },
+  methods: {
+
   }
+}
 </script>
 
 <style scoped>
-  .index {
-    
-  }
 </style>
